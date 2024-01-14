@@ -1,0 +1,40 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: dotnet-helloworld
+  name: dotnet-helloworld
+spec:
+  selector:
+    matchLabels:
+      app: dotnet-helloworld
+  template:
+    metadata:
+      labels:
+        app: dotnet-helloworld
+      name: dotnet-helloworld
+      annotations: []
+    spec:
+      containers:
+        - name: dotnet-helloworld
+          image: image-placeholder
+          ports:
+            - containerPort: 8080
+          resources:
+            limits:
+              cpu: 500m
+              memory: 1Gi
+            requests:
+              cpu: 250m
+              memory: 500Mi
+          securityContext:
+            allowPrivilegeEscalation: false
+            seccompProfile:
+              type: RuntimeDefault
+          imagePullPolicy: IfNotPresent
+      imagePullSecrets:
+        - name: regcred
+      securityContext:
+        runAsUser: 1001
+        runAsGroup: 9000

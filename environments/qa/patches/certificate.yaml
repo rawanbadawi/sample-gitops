@@ -1,0 +1,16 @@
+#
+# Modifies the ../base/certificate.yaml configuration results
+#
+#- op: replace
+#  path: "/spec/issuerRef/name"
+#  value: dotnet-helloworld-qa
+- op: replace
+  path: "/spec/dnsNames"
+  value: [dotnet-helloworld-qa.example.com]
+- op: replace
+  path: "/spec/emailAddresses"
+  value: [email@example.com]
+- op: replace
+  path: "/spec/secretName"
+  value: dotnet-helloworld-qa-tls
+

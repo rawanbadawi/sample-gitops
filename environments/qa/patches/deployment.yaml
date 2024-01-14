@@ -1,0 +1,14 @@
+- op: add
+  path: '/spec/template/metadata/annotations'
+  value:
+    seccomp.security.alpha.kubernetes.io/pod: runtime/default
+    container.apparmor.security.beta.kubernetes.io/dotnet-helloworld-qa: runtime/default
+- op: replace
+  path: "/spec/replicas"
+  value: 1
+- op: replace
+  path: "/spec/template/metadata/name"
+  value: dotnet-helloworld-qa
+- op: replace
+  path: "/spec/template/spec/containers/0/name"
+  value: dotnet-helloworld-qa
