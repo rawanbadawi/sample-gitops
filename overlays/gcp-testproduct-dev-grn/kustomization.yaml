@@ -3,6 +3,7 @@ kind: Kustomization
 
 resources:
   - ../../environments/dev
+  
 
 patches:
 - path: ./patches/dotnet-helloworld-certificate.yaml

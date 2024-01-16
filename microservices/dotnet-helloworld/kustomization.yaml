@@ -4,7 +4,8 @@ kind: Kustomization
 resources:
   - ./resources/certificate.yaml
   - ./resources/deployment.yaml
-  - ./resources/ingress.yaml
+  - ./resources/ingress-main.yaml
+  - ./resources/ingress-cluster.yaml
   #- ./resources/issuer.yaml
   - ./resources/service.yaml
 
