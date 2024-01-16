@@ -1,28 +1,38 @@
-apiVersion: kustomize.config.k8s.io/v1alpha1
-kind: Component
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
 
 namespace: dotnet-helloworld-qa
-nameSuffix: -qa
 
 resources:
   - ../../base
 
 patches:
-  - path: ./patches/certificate.yaml
-    target:
-      kind: Certificate
-  - path: ./patches/deployment.yaml
-    target:
-      kind: Deployment
-  - path: ./patches/ingress.yaml
-    target:
-      kind: Ingress
+- path: ./patches/dotnet-helloworld-certificate.yaml
+  target:
+    kind: Certificate
+    name: dotnet-helloworld
+- path: ./patches/dotnet-helloworld-deployment.yaml
+  target:
+    kind: Deployment
+    name: dotnet-helloworld
+- path: ./patches/dotnet-helloworld-ingress.yaml
+  target:
+    kind: Ingress
+    name: dotnet-helloworld 
 
 commonLabels:
-  app: dotnet-helloworld-qa
+  app_code: "3kv" 
+  classification: "highly-confidential" 
+  cost_id: "12345" 
+  department_id: "12345" 
+  project_id:  "it-rtyfhdfdf"
+  tco_id: "lob-inv" 
+  app_environment: "qa"
+  sc_group: "corp-sc-group"
+  app_instance: "snsvc123456"
 
 
 images:
-  - name: image-placeholder
+  - name: dotnet-helloworld-image
     newName: repo-prod/containers/dotnet-helloworld
     newTag: 2023.12.13
