@@ -4,6 +4,7 @@ kind: Kustomization
 resources:
   - ./resources/certificate.yaml
   - ./resources/deployment.yaml
+  - ./resources/hpa.yaml
   - ./resources/ingress-main.yaml
   - ./resources/ingress-cluster.yaml
   #- ./resources/issuer.yaml

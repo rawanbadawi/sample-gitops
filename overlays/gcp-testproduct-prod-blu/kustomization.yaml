@@ -4,16 +4,12 @@ kind: Kustomization
 resources:
   - ../../environments/prod
 
-# patches:
-# - path: ../gcp-testproduct-prod-grn/patches/dotnet-helloworld-certificate.yaml
-#   target:
-#     kind: Certificate
-#     name: dotnet-helloworld
-# - path: ../gcp-testproduct-prod-grn/patches/dotnet-helloworld-deployment.yaml
-#   target:
-#     kind: Deployment
-#     name: dotnet-helloworld
-# - path: ../gcp-testproduct-prod-grn/patches/dotnet-helloworld-ingress.yaml
-#   target:
-#     kind: Ingress
-#     name: dotnet-helloworld 
+patches:
+- path: ./patches/dotnet-helloworld-certificate.yaml
+  target:
+    kind: Certificate
+    name: dotnet-helloworld
+- path: ./patches/dotnet-helloworld-ingress-cluster.yaml
+  target:
+    kind: Ingress
+    name: dotnet-helloworld-cluster

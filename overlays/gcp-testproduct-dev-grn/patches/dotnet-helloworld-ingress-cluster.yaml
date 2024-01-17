@@ -4,7 +4,5 @@
 - op: replace
   path: /spec/tls/0/hosts/0
   value: dotnet-helloworld-dev-grn.example.com
-- op: replace
-  path: /spec/tls/0/secretName
-  value: dotnet-helloworld-dev-tls
+
 

@@ -9,10 +9,6 @@ patches:
   target:
     kind: Certificate
     name: dotnet-helloworld
-- path: ./patches/dotnet-helloworld-deployment.yaml
-  target:
-    kind: Deployment
-    name: dotnet-helloworld
 - path: ./patches/dotnet-helloworld-ingress.yaml
   target:
     kind: Ingress

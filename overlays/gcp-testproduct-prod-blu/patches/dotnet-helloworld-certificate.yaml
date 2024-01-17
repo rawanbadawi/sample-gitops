@@ -6,5 +6,5 @@
 #  value: dotnet-helloworld-dev
 - op: replace
   path: "/spec/dnsNames"
-  value: [dotnet-helloworld-dev.example.com, dotnet-helloworld-dev-grn.example.com]
+  value: [dotnet-helloworld.example.com, dotnet-helloworld-blu.example.com]
 

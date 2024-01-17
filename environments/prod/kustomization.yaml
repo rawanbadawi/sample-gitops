@@ -12,9 +12,9 @@ patches:
   target:
     kind: Certificate
     name: dotnet-helloworld
-- path: ./patches/dotnet-helloworld-deployment.yaml
+- path: ./patches/dotnet-helloworld-hpa.yaml
   target:
-    kind: Deployment
+    kind: HorizontalPodAutoscaler
     name: dotnet-helloworld
 - path: ./patches/dotnet-helloworld-ingress.yaml
   target:

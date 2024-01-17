@@ -7,9 +7,4 @@
 - op: replace
   path: "/spec/dnsNames"
   value: [dotnet-helloworld.example.com]
-- op: replace
-  path: "/spec/emailAddresses"
-  value: [email@example.com]
-- op: replace
-  path: "/spec/secretName"
-  value: dotnet-helloworld-prod-tls
+
