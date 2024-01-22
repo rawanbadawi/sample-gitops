@@ -1,0 +1,14 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  - ./resources/certificate.yaml
+  - ./resources/deployment.yaml
+  - ./resources/hpa.yaml
+  - ./resources/ingress-main.yaml
+  - ./resources/ingress-cluster.yaml
+  #- ./resources/issuer.yaml
+  - ./resources/service.yaml
+
+commonLabels:
+  backstage.io/kubernetes-id: dotnet-helloworld

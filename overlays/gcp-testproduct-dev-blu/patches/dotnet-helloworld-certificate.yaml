@@ -1,0 +1,7 @@
+#
+# Modifies the ../base/certificate.yaml configuration results
+#
+- op: replace
+  path: "/spec/dnsNames"
+  value: [dotnet-helloworld-dev.example.com, dotnet-helloworld-dev-blu.example.com]
+

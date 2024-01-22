@@ -5,6 +5,9 @@ metadata:
   labels:
     app: dotnet-helloworld
   name: dotnet-helloworld
+  annotations:
+    seccomp.security.alpha.kubernetes.io/pod: runtime/default
+    container.apparmor.security.beta.kubernetes.io/dotnet-helloworld: runtime/default
 spec:
   selector:
     matchLabels:
@@ -14,17 +17,15 @@ spec:
       labels:
         app: dotnet-helloworld
       name: dotnet-helloworld
-      annotations: []
     spec:
       containers:
         - name: dotnet-helloworld
-          image: image-placeholder
+          image: dotnet-helloworld-image
           ports:
             - containerPort: 8080
           resources:
             limits:
-              cpu: 500m
-              memory: 1Gi
+              memory: 500Mi
             requests:
               cpu: 250m
               memory: 500Mi

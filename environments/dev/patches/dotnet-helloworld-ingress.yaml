@@ -1,9 +1,7 @@
 - op: replace
   path: /spec/rules/0/host
-  value: dotnet-helloworld-dev.com
+  value: dotnet-helloworld-dev.example.com
 - op: add
   path: /spec/tls/0/hosts/0
   value: dotnet-helloworld-dev.example.com
-- op: replace
-  path: /spec/tls/0/secretName
-  value: dotnet-helloworld-dev-tls
+

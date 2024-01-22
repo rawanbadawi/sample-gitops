@@ -1,5 +1,19 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
-components:
+resources:
   - ../../environments/dev
+
+patches:
+- path: ./patches/dotnet-helloworld-certificate.yaml
+  target:
+    kind: Certificate
+    name: dotnet-helloworld
+- path: ./patches/dotnet-helloworld-ingress-cluster.yaml
+  target:
+    kind: Ingress
+    name: dotnet-helloworld-cluster
+- path: ./patches/dotnet-helloworld-ingress-cluster.yaml
+  target:
+    kind: Ingress
+    name: dotnet-helloworld

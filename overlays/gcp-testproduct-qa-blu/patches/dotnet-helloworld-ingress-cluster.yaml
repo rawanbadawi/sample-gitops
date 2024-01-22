@@ -1,0 +1,7 @@
+- op: add
+  path: /spec/rules/0/host
+  value: dotnet-helloworld-qa-blu.example.com
+- op: replace
+  path: /spec/tls/0/hosts/0
+  value: dotnet-helloworld-qa-blu.example.com
+

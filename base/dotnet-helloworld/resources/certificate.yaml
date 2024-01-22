@@ -7,7 +7,7 @@ spec:
   # At least one of a DNS Name, URI, or IP address is required.
   dnsNames: []
   duration: 8760h0m0s # 365d
-  emailAddresses: []
+  emailAddresses: [email@email.com]
   # Issuer references are always required.
   issuerRef:
     name: clusterissuer-prod
