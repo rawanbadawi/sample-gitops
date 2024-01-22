@@ -1,4 +1,4 @@
-- op: replace
+- op: add
   path: /spec/rules/0/host
   value: dotnet-helloworld-grn.example.com
 - op: replace
