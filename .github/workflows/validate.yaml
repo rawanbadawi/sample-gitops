@@ -1,4 +1,4 @@
-name: Validate Kustomize Files
+name: Validate Kubernetes Manifests
 
 on: 
   pull_request:
