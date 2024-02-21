@@ -2,15 +2,15 @@ on:
   workflow_call:
     inputs:
       kustomize-version:
-        required: true
+        required: false
         type: string
         default: '5.3.0'
       kubeconform-version:
-        required: true
+        required: false
         type: string
         default: '0.6.4'
       overlays-dir:
-        required: true
+        required: false
         type: string
         default: ./overlays
 
