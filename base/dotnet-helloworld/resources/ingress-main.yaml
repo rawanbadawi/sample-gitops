@@ -13,7 +13,7 @@ spec:
     - hosts: []
       secretName: dotnet-helloworld-tls
   rules:
-    - host: PLACEHOLDER
+  - host: PLACEHOLDER
       http:
         paths:
           - backend:
