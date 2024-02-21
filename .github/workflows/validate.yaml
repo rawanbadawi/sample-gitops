@@ -19,7 +19,7 @@ jobs:
             echo "Kustomize is not installed. Please contact the container team."
             exit 1
           fi
-      - name: Install Kubeval
+      - name: Install kubeconform
         run: |
           curl -sSL -O "https://github.com/yannh/kubeconform/releases/download/v0.6.4/kubeconform-linux-amd64.tar.gz" && tar -xf kubeconform-linux-amd64.tar.gz && chmod +x kubeconform
           mv kubeconform /usr/local/bin/kubeconform
