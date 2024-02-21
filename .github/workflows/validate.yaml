@@ -21,7 +21,7 @@ jobs:
           fi
       - name: Install Kubeval
         run: |
-          curl -sSL -O "https://github.com/yannh/kubeconform/releases/download/v0.6.4/kubeconform-linux-arm64.tar.gz" && tar xf kubeconform-linux-arm64.tar.gz && chmod +x kubeconform
+          curl -sSL -O "https://github.com/yannh/kubeconform/releases/download/v0.6.4/kubeconform-linux-arm64.tar.gz" && tar -xf kubeconform-linux-arm64.tar.gz && chmod +x kubeconform
           mv kubeconform /usr/local/bin/kubeconform
           if ! command -v kubeconform &> /dev/null; then
             echo "Kubeconform is not installed. Please contact the container team."
