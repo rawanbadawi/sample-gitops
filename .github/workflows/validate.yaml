@@ -17,21 +17,16 @@ jobs:
       
       - name: Install kubeconform
         run: |
-          curl -Lo kubeconform https://github.com/yannh/kubeconform/releases/download/v0.6.4/kubeconform-linux-amd64.tar.gz && dpkg --print-architecture && chmod +x kubeconform && mv kubeconform /usr/local/bin/
+          curl -sLo https://github.com/instrumenta/kubeval/releases/latest/download/kubeval-linux-amd64.tar.gz && tar xf kubeval-linux-amd64.tar.gz && mv kubeval /usr/local/bin
 
       - name: List Directory and Run Kustomize Build then kubeconform
         run: |
           for dir in $(find ./overlays -maxdepth 1 -type d); do
             if [ -f "$dir/kustomization.yaml" ]; then
               echo "Processing Kustomize directory: $dir"
-              if ! kustomize build $dir > kustomize_output.yaml; then
+              if ! kustomize build | kubeval ; then
                 echo "Kustomize build failed in directory: $dir"
                 exit 1
               fi
-              if ! kubeconform -strict -ignore-missing-schemas kustomize_output.yaml; then
-                echo "Kubeconform validation failed in directory: $dir"
-                exit 1
-              fi
-              rm kustomize_output.yaml  # Clean up the temporary output file
             fi
           done
