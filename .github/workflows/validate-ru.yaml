@@ -32,8 +32,9 @@ jobs:
                 echo "Kustomize validation failed in directory: $dir"
                 exit 1
               fi
-              if ! kubeconform -summary -skip CustomResourceDefinition -ignore-missing-schemas ./test.yaml; then:
-                echo "Kubeconform validation failed"
+              if ! kubeconform -summary -skip CustomResourceDefinition -ignore-missing-schemas ./test.yaml; then
+                echo "Kubeconform validation failed in directory: $dir"
+                exit 1
               fi  
 
             fi
