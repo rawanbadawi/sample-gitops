@@ -6,20 +6,12 @@ on:
 
 jobs:
   validate-kustomize:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - uses: yokawasa/action-setup-kube-tools@v0.10.0
-        with:
-          kustomize: '5.3.0'
-          kubeconform: '0.6.4'
-      - run: |
-          for dir in $(find ./overlays -maxdepth 1 -type d); do
-            if [ -f "$dir/kustomization.yaml" ]; then
-              echo "Processing Kustomize directory: $dir"
-              if ! kustomize build $dir | kubeconform -summary -skip CustomResourceDefinition -ignore-missing-schemas; then
-                echo "Build failed in directory: $dir"
-                exit 1
-              fi
-            fi
-          done
+    uses: ./.github/workflows/validate-ru.yaml
+    permissions: 
+        id-token: write
+        contents: read
+        actions: read
+        security-events: write
+    with: 
+      overlays-dir: ./overlays
+      secrets: inherit
