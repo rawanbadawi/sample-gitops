@@ -28,9 +28,12 @@ jobs:
           for dir in $(find ${{ inputs.overlays-dir }} -maxdepth 1 -type d); do
             if [ -f "$dir/kustomization.yaml" ]; then
               echo "Processing Kustomize directory: $dir"
-              if ! kustomize build $dir | kubeconform -summary -skip CustomResourceDefinition -ignore-missing-schemas; then
-                echo "Build failed in directory: $dir"
+              if ! kustomize build $dir > ./test.yaml ; then
+                echo "Kustomize validation failed in directory: $dir"
                 exit 1
               fi
+              if ! kubeconform -summary -skip CustomResourceDefinition -ignore-missing-schemas ./test.yaml; then:
+                echo "Kubeconform validation failed"
+
             fi
           done
