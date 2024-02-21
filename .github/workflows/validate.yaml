@@ -21,7 +21,7 @@ jobs:
 
       - name: List Directory and Run Kustomize Build then kubeconform
         run: |
-          for dir in $(find ./path/to/parent/directory -maxdepth 1 -type d); do
+          for dir in $(find ./overlays -maxdepth 1 -type d); do
             if [ -f "$dir/kustomization.yaml" ]; then
               echo "Processing Kustomize directory: $dir"
               if ! kustomize build $dir > kustomize_output.yaml; then
