@@ -12,4 +12,4 @@ patches:
 - path: ./patches/dotnet-helloworld-ingress.yaml
   target:
     kind: Ingress
-    name: dotnet-helloworld 
+    name: dotnet-helloworld-cluster 
