@@ -15,7 +15,7 @@ jobs:
           curl -s "https://raw.githubusercontent.com/kubernetes-sigs/kustomize/master/hack/install_kustomize.sh"  | bash
            mv kustomize /usr/local/bin/kustomize
 
-      - name: List Directory and Run Kustomize Build then kubeconform
+      - name: List Directory and Run Kustomize Build
         run: |
           for dir in $(find ./overlays -maxdepth 1 -type d); do
             if [ -f "$dir/kustomization.yaml" ]; then
