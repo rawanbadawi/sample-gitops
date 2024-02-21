@@ -13,4 +13,4 @@
 
 - op: replace
   path: "/spec/metrics/1/resource/target/averageUtilization"
-  value: 80
+  value: why
