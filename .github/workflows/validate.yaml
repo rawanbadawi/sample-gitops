@@ -14,4 +14,3 @@ jobs:
         security-events: write
     with: 
       overlays-dir: ./overlays
-      secrets: inherit
