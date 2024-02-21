@@ -14,6 +14,7 @@ jobs:
         run: |
           curl -s "https://raw.githubusercontent.com/kubernetes-sigs/kustomize/master/hack/install_kustomize.sh"  | bash
            mv kustomize /usr/local/bin/kustomize
+
           if ! command -v kustomize &> /dev/null; then
             echo "Kustomize is not installed. Please contact the container team."
             exit 1
@@ -21,11 +22,15 @@ jobs:
       - name: Install Kubeval
         run: |
           curl -sSL -O "https://github.com/yannh/kubeconform/releases/download/v0.6.4/kubeconform-linux-arm64.tar.gz" && ls -lart
+          mv kubeconform /usr/local/bin/kubeconform
           if ! command -v kubeconform &> /dev/null; then
             echo "Kubeconform is not installed. Please contact the container team."
             exit 1
           fi
-      - name: List Directory and Run Kustomize Build then kubeconform
+
+
+      - name: List Directory and Run Kustomize Build
+
         run: |
           for dir in $(find ./overlays -maxdepth 1 -type d); do
             if [ -f "$dir/kustomization.yaml" ]; then
