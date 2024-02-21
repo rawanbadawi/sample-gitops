@@ -34,6 +34,7 @@ jobs:
               fi
               if ! kubeconform -summary -skip CustomResourceDefinition -ignore-missing-schemas ./test.yaml; then:
                 echo "Kubeconform validation failed"
+              fi  
 
             fi
           done
