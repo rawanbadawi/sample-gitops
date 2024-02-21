@@ -1,0 +1,36 @@
+on:
+  workflow_call:
+    inputs:
+      kustomize-version:
+        required: false
+        type: string
+        default: '5.3.0'
+      kubeconform-version:
+        required: false
+        type: string
+        default: '0.6.4'
+      overlays-dir:
+        required: false
+        type: string
+        default: ./overlays
+
+jobs:
+  validate-kustomize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: yokawasa/action-setup-kube-tools@v0.10.0
+        with:
+          kustomize: ${{ inputs.kustomize-version }}
+          kubeconform: ${{ inputs.kubeconform-version }}
+
+      - run: |
+          for dir in $(find ${{ inputs.overlays-dir }} -maxdepth 1 -type d); do
+            if [ -f "$dir/kustomization.yaml" ]; then
+              echo "Processing Kustomize directory: $dir"
+              if ! kustomize build $dir | kubeconform -summary -skip CustomResourceDefinition -ignore-missing-schemas; then
+                echo "Build failed in directory: $dir"
+                exit 1
+              fi
+            fi
+          done

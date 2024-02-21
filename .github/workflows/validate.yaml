@@ -1,4 +1,4 @@
-name: Validate Kustomize Files
+name: Validate Kubernetes Manifests
 
 on: 
   pull_request:
@@ -6,23 +6,11 @@ on:
 
 jobs:
   validate-kustomize:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-
-      - name: Install kustomize
-        run: |
-          curl -s "https://raw.githubusercontent.com/kubernetes-sigs/kustomize/master/hack/install_kustomize.sh"  | bash
-           mv kustomize /usr/local/bin/kustomize
-
-      - name: List Directory and Run Kustomize Build
-        run: |
-          for dir in $(find ./overlays -maxdepth 1 -type d); do
-            if [ -f "$dir/kustomization.yaml" ]; then
-              echo "Processing Kustomize directory: $dir"
-              if ! kustomize build $dir ; then
-                echo "Kustomize build failed in directory: $dir"
-                exit 1
-              fi
-            fi
-          done
+    uses: ./.github/workflows/validate-ru.yaml
+    permissions: 
+        id-token: write
+        contents: read
+        actions: read
+        security-events: write
+    with: 
+      overlays-dir: ./overlays
