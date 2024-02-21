@@ -17,7 +17,7 @@ jobs:
       
       - name: Install kubeconform
         run: |
-          curl -sLo https://github.com/instrumenta/kubeval/releases/latest/download/kubeval-linux-amd64.tar.gz && tar xf kubeval-linux-amd64.tar.gz && mv kubeval /usr/local/bin
+          curl -Lo https://github.com/instrumenta/kubeval/releases/latest/download/kubeval-linux-amd64.tar.gz && tar xf kubeval-linux-amd64.tar.gz && mv kubeval /usr/local/bin
 
       - name: List Directory and Run Kustomize Build then kubeconform
         run: |
