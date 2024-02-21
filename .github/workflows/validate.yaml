@@ -9,28 +9,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-
-      - name: Install kustomize
-        run: |
-          curl -s "https://raw.githubusercontent.com/kubernetes-sigs/kustomize/master/hack/install_kustomize.sh"  | bash
-           mv kustomize /usr/local/bin/kustomize
-
-          if ! command -v kustomize &> /dev/null; then
-            echo "Kustomize is not installed. Please contact the container team."
-            exit 1
-          fi
-      - name: Install kubeconform
-        run: |
-          curl -sSL -O "https://github.com/yannh/kubeconform/releases/download/v0.6.4/kubeconform-linux-amd64.tar.gz" && tar -xf kubeconform-linux-amd64.tar.gz && chmod +x kubeconform
-          mv kubeconform /usr/local/bin/kubeconform
-          if ! command -v kubeconform &> /dev/null; then
-            echo "Kubeconform is not installed. Please contact the container team."
-            exit 1
-          fi
-
-
-      - name: List Directory and Run Kustomize Build and kubeconform
-        run: |
+      - uses: yokawasa/action-setup-kube-tools@v0.10.0
+        with:
+          kustomize: '5.3.0'
+          kubeconform: '0.6.4'
+      - run: |
           for dir in $(find ./overlays -maxdepth 1 -type d); do
             if [ -f "$dir/kustomization.yaml" ]; then
               echo "Processing Kustomize directory: $dir"
