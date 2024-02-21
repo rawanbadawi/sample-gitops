@@ -22,7 +22,7 @@ spec:
         - name: dotnet-helloworld
           image: dotnet-helloworld-image
           ports:
-            - containerPort: hello
+            - containerPort: 5324
           resources:
             limits:
               memory: 500Mi
